@@ -1,0 +1,51 @@
+﻿@model List<InsertaClienteAjax.Entity.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<div style="margin: 80px auto; width: 500px;">
+    <input type="button" id="btn-agrega-cliente" value="Agregar cliente" />
+    @if ((string)Session["usuario"] != null)
+    {
+        @Session["usuario"]
+        <input type="button" id="cierra-sesion" value="Cerrar sesión" />
+    }
+    else
+    {
+        <input type="button" id="inicia-sesion" value="Iniciar Sesión" />
+    }
+    <br />
+    <br />
+    <table style="border-collapse: collapse; border: 1px solid #dddddd;">
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Celular</th>
+                <th>Correo</th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dato in Model)
+            {
+                <tr>
+                    <td>@dato.Documento</td>
+                    <td>@dato.Nombre</td>
+                    <td>@dato.Apellido</td>
+                    <td>@dato.Celular</td>
+                    <td>@dato.Correo</td>
+                    <td>@dato.Usuario</td>
+                    <td>@dato.Contrasena</td>
+                    <td><input type="button" data-id="@dato.Documento" id="btn-editar" value="Editar" /></td>
+                    <td><input type="button" data-id="@dato.Documento" id="btn-eliminar" value="Eliminar" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
